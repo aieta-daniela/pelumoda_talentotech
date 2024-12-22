@@ -201,6 +201,9 @@ main{
     .nosotros{
         font-size: 0.8em;
     }
+    .categorias{
+        flex-direction: column;
+    }
 }
         
 .footer {
