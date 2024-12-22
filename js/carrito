@@ -1,7 +1,5 @@
-// Almacena los productos del carrito
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-// Función para agregar productos al carrito
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 function agregarAlCarrito(nombre, precio) {
 
@@ -46,9 +44,6 @@ function agregarAlCarrito(nombre, precio) {
 }
 
 
-
-
-// Función para renderizar el carrito en la página carrito.html
 function renderizarCarrito() {
     const tablaCarrito = document.getElementById('tabla-carrito');
     const totalPrecio = document.getElementById('total-precio');
@@ -76,14 +71,14 @@ function renderizarCarrito() {
     totalPrecio.textContent = total.toFixed(2);
 }
 
-// Función para eliminar un producto del carrito
+
 function eliminarProducto(indice) {
     carrito.splice(indice, 1);
     localStorage.setItem('carrito', JSON.stringify(carrito));
     renderizarCarrito();
 }
 
-// Función para vaciar el carrito
+
 function vaciarCarrito() {
     carrito = [];
     localStorage.setItem('carrito', JSON.stringify(carrito));
