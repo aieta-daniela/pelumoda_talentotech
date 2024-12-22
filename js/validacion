@@ -1,24 +1,24 @@
-// Seleccionamos el formulario
+
 const formulario = document.querySelector('.formulario-contacto');
 const mensajeAgradecimiento = document.getElementById('mensaje-agradecimiento');
 
-// Añadimos un evento de "submit" al formulario
+
 formulario.addEventListener('submit', function(event) {
-    // Prevenimos el comportamiento por defecto (enviar el formulario)
+   
     event.preventDefault();
     
-    // Obtenemos los valores de los campos del formulario
+    
     const nombre = document.getElementById('nombre').value.trim();
     const email = document.getElementById('email').value.trim();
     const mensaje = document.getElementById('mensaje').value.trim();
 
-    // Validación: Verificamos si alguno de los campos está vacío
+    // Validación:
     if (nombre === '' || email === '' || mensaje === '') {
         alert('Por favor, completa todos los campos.');
         return; // Salir de la función si algún campo está vacío
     }
 
-    // Validación del formato del email
+    
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailRegex.test(email)) {
         alert('Por favor, ingresa un correo electrónico válido.');
