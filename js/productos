@@ -1,7 +1,7 @@
-// Recuperar el carrito desde localStorage o inicializarlo vacío
+
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-// Función para agregar un producto al carrito
+
 function agregarAlCarrito(nombre, precio) {
     const productoExistente = carrito.find(producto => producto.nombre === nombre);
 
@@ -9,7 +9,7 @@ function agregarAlCarrito(nombre, precio) {
         // Si el producto ya está en el carrito, aumentar la cantidad
         productoExistente.cantidad += 1;
     } else {
-        // Si no está en el carrito, agregar un nuevo producto
+      
         carrito.push({ nombre, precio, cantidad: 1 });
     }
 
