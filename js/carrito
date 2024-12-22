@@ -1,0 +1,97 @@
+// Almacena los productos del carrito
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+// Función para agregar productos al carrito
+
+function agregarAlCarrito(nombre, precio) {
+
+   
+    const productoExistente = carrito.find(producto => producto.nombre === nombre);
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+    }
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    alert(`${nombre} agregado al carrito.`);
+
+
+
+
+    //prueba
+    const tablaCarrito = document.getElementById('tabla-carrito');
+    const totalPrecio = document.getElementById('total-precio');
+    //tablaCarrito.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach((producto, index) => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+        const fila = `
+            <tr>
+                <td>${producto.nombre}</td>                
+                <td>$${producto.precio.toFixed(2)}</td>
+                <td>${producto.cantidad}</td>
+                <td>$${subtotal.toFixed(2)}</td>
+                <td>
+                    <button onclick="eliminarProducto(${index})">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        tablaCarrito.innerHTML += fila;
+    });
+
+    totalPrecio.textContent = total.toFixed(2);
+}
+
+
+
+
+// Función para renderizar el carrito en la página carrito.html
+function renderizarCarrito() {
+    const tablaCarrito = document.getElementById('tabla-carrito');
+    const totalPrecio = document.getElementById('total-precio');
+    tablaCarrito.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach((producto, index) => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+        const fila = `
+            <tr>
+                <td>${producto.nombre}</td>                
+                <td>$${producto.precio.toFixed(2)}</td>
+                <td>${producto.cantidad}</td>
+                <td>$${subtotal.toFixed(2)}</td>
+                <td>
+                    <button onclick="eliminarProducto(${index})">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        tablaCarrito.innerHTML += fila;
+    });
+
+    totalPrecio.textContent = total.toFixed(2);
+}
+
+// Función para eliminar un producto del carrito
+function eliminarProducto(indice) {
+    carrito.splice(indice, 1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    renderizarCarrito();
+}
+
+// Función para vaciar el carrito
+function vaciarCarrito() {
+    carrito = [];
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    renderizarCarrito();
+}
+
+// Llama a renderizarCarrito solo si está en carrito.html
+if (document.getElementById('tabla-carrito')) {
+    renderizarCarrito();
+}
+
