@@ -546,3 +546,8 @@ h2, h3 {
         gap: 10px;
     }
 }
+.agregar{
+    background-color: #0e0466;
+    color: #d2d8e4;
+    font-size: 14px
+}
